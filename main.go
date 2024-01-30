@@ -3,15 +3,13 @@ package main
 import (
 	"bloggy_api/database"
 	"bloggy_api/routes"
+	"os"
 )
 
 func main() {
 
-	const url string = "postgres://postgres:postgres@localhost/blog"
-	sqlbase := database.NewDatabaseConnection(url)
-	sqlbase.Connect()
-
+	os.Setenv("URL", "postgres://oussama:sqloussama@localhost:5432/blog")
+	database.Connect()
 	server := routes.NewApiServer(":3000")
 	server.Run()
-
 }

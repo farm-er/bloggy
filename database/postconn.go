@@ -18,14 +18,15 @@ func NewDatabaseConnection(databaseUrl string) *PostgresqlConnection {
 	}
 }
 
-func (p *PostgresqlConnection) Connect() {
-	dbpool, err := pgxpool.New(context.Background(), os.Getenv(p.Url))
+func Connect() {
+	dbpool, err := pgxpool.New(context.Background(), os.Getenv("URL"))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to create connection pool: %v\n", err)
 		os.Exit(1)
 	}
+	fmt.Println(dbpool)
 	defer dbpool.Close()
-
+	fmt.Println(dbpool)
 	var greeting string
 
 	err = dbpool.QueryRow(context.Background(), "select 'Hello, world!'").Scan(&greeting)
