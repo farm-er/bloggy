@@ -2,6 +2,7 @@ package routes
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -41,7 +42,9 @@ func (s *ApiServer) Run() {
 	router := mux.NewRouter()
 
 	router.HandleFunc("/", makeHTTPHandlerFunc(rootHandler))
+	fmt.Printf("New connection on port: %v", s.listenAdr)
 	http.ListenAndServe(s.listenAdr, router)
+
 }
 
 func rootHandler(w http.ResponseWriter, r *http.Request) error {
