@@ -8,18 +8,9 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-type PostgresqlConnection struct {
-	Url string
-}
+func PostConnect() {
 
-func NewDatabaseConnection(databaseUrl string) *PostgresqlConnection {
-	return &PostgresqlConnection{
-		Url: databaseUrl,
-	}
-}
-
-func Connect() {
-	dbpool, err := pgxpool.New(context.Background(), os.Getenv("URL"))
+	dbpool, err := pgxpool.New(context.Background(), os.Getenv("POSTURL"))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to create connection pool: %v\n", err)
 		os.Exit(1)
