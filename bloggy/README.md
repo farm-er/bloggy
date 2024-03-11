@@ -1,0 +1,47 @@
+--- routes
+
+-> /user
+--- valid methods: POST - DELETE - GET
+    - GET:
+    --do: get user account
+    --data: token
+    - POST: 
+    --do: change username 
+    --data: Token + password + username
+    - DELETE: 
+    --do: delete user's account
+    --data: Token + password
+-> /signup
+    - POST: 
+    --do: register 
+    --data: first name + last name + username + email + password
+-> /login
+    - POST: 
+    --do: login 
+    --data: email + password
+-> /posts
+    --- valid methods: POST - DELETE
+    - POST: 
+    --do: add a post
+    --data: Token + password + title + body
+    - DELETE: 
+    --do: delete a post
+    --data: Token + post id + password
+-> /posts/like
+    --- valid methods: POST
+    - POST: 
+    --do: like a post
+    --data: Token + post id
+-> /comments
+    --- valid methods: POST - DELETE
+    - POST: 
+    --do: add a comment
+    --data: Token + post id + body
+    - DELETE: 
+    --do: delete a comment
+    --data: Token + post id + comment id
+-> /comments/like
+    --- valid methods: POST
+    - POST: 
+    --do: like a comment
+    --data: Token + comment id
